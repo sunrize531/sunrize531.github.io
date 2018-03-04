@@ -3,7 +3,6 @@ import fabric.contrib.project as project
 import os
 import shutil
 import sys
-import SocketServer
 
 from pelican.server import ComplexHTTPRequestHandler
 
@@ -34,7 +33,8 @@ def clean():
 
 def build():
     """Build local version of site"""
-    local('pelican -s pelicanconf.py')
+    local('sassc themes/bugger/source/css/index.scss themes/bugger/static/css/style.css')
+    local('pelican -s pelicanconf.py -t ./themes/bugger')
 
 def rebuild():
     """`build` with the delete switch"""
@@ -46,15 +46,7 @@ def regenerate():
 
 def serve():
     """Serve site at http://localhost:8000/"""
-    os.chdir(env.deploy_path)
-
-    class AddressReuseTCPServer(SocketServer.TCPServer):
-        allow_reuse_address = True
-
-    server = AddressReuseTCPServer(('', PORT), ComplexHTTPRequestHandler)
-
-    sys.stderr.write('Serving on port {0} ...\n'.format(PORT))
-    server.serve_forever()
+    pass
 
 def reserve():
     """`build`, then `serve`"""

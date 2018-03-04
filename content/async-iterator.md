@@ -1,4 +1,4 @@
-Title: WTF is CORS
+Title: Asyncing Asyncronously
 Date: 2018-03-03 12:00
 Category: Article
 

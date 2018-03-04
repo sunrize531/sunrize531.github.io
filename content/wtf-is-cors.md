@@ -7,8 +7,8 @@ Category: Article
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) is
 a browser feature. It won't let you send requests to other server(s) if
 these server(s) doesn't implement CORS support. I.e. if the page opened
-from [https://google.com] and it wants to send the request to
-[https://microsoft.com] - there are gonna be some restriction.
+from ()[https://google.com] and it wants to send the request to
+()[https://microsoft.com] - there are gonna be some restriction.
 It won't `just work` in all cases.
 
 # Why care
