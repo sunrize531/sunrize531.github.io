@@ -4,15 +4,25 @@ $sans-font: 'PT Sans', sans-serif;
 $serif-font: 'Roboto Slab', serif;
 $mono-font: 'Source Code Pro', monospace;
 
+@import 'variables';
+
 body {
-    font-size: 16px;
-    line-height: 1.25em;
+    font-size: $font-size;
+    line-height: $line-height;
     font-family: $sans-font;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: $serif-font;
     font-weight: 700;
+    @include margin-vertical(0.25);
+}
+
+p {
+    padding: 0;
+    @include margin-vertical;
+    text-align: justify;
 }
 
 h1 {
@@ -34,3 +44,15 @@ h4 {
     font-size: 1.125em;
     line-height: 1.25em;
 }
+
+h5, h6 {
+    font-size: 1em;
+    line-height: 1.25em;
+    @include margin-vertical;
+}
+
+pre {
+    margin: 0;
+}
+
+
