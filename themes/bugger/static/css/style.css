@@ -51,6 +51,17 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color: #272c30; }
 
+a {
+  color: #272c30; }
+
+a:visited {
+  color: #7963c2; }
+
+body#index ol#post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
 .highlight {
   background: #e6e4e1;
   color: #272c30;

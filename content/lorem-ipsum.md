@@ -1,6 +1,7 @@
 Title: Lorem ipsum
+Summary: Markdown test page
 Date: 2018-02-24 12:00
-Category: Article
+Category: Tests
 
 # <a name="top"></a>Markdown Test Page
 

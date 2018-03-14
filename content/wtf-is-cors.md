@@ -1,6 +1,7 @@
 Title: WTF is CORS
+Summary: How to make crossdomain calls from browser without breaking inner peace.
 Date: 2018-02-24 12:00
-Category: Article
+Category: Guides
 
 # What is CORS
 
