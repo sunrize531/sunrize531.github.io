@@ -73,4 +73,4 @@ Although this is actually the case for separate article.
 
 1. Try to pre-populate indexed fields, if it's possible
 2. If you're going to use comparison operators - don't mix up the types, you might be surprised with results.
-3. If you need to include the documents with missing indexed field - use `{value: {$exist: false}}` in favour of `{value: null}`.fab 
+3. If you need to include the documents with missing indexed field - use `{value: {$exist: false}}` in favour of `{value: null}`. 
