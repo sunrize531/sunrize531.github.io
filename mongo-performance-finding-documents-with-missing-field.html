@@ -74,7 +74,7 @@ And there would be just one matching document: <code>'00001'</code>. Which proba
 
 
 <p>Query #1 would return all the documents we want, i.e. <code>['00001', '00002, '00003']</code>. But there's a caveat.
-It appears that it does <code>COLSCAN</code> if we there're lots of documents with missing <code>value</code> field.</p>
+It appears that it does <code>COLSCAN</code> if there're lots of documents with missing <code>value</code> field.</p>
 <p>Query #2 would <strong>not</strong> return <code>'00003'</code>, cause <code>value</code> field does exist.
 But it apparently runs <code>FETCH</code> which is much much faster.</p>
 <h1>Avoid using $ne, unless absolutely needed</h1>
@@ -90,7 +90,7 @@ Although this is actually the case for separate article.</p>
 <ol>
 <li>Try to pre-populate indexed fields, if it's possible</li>
 <li>If you're going to use comparison operators - don't mix up the types, you might be surprised with results.</li>
-<li>If you need to include the documents with missing indexed field - use <code>{value: {$exist: false}}</code> in favour of <code>{value: null}</code>.</li>
+<li>If you need to include the documents with missing indexed field - use <code>{value: {$exist: false}}</code> in favour of <code>{value: null}</code>.fab </li>
 </ol>
   </div><!-- /.entry-content -->
 </section>
