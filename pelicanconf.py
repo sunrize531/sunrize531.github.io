@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Ivan Filimonov'
-SITENAME = 'DailyBugger'
+SITENAME = 'BUGGER.ONLINE'
 SITEURL = ''
 
 PATH = 'content'
@@ -22,12 +22,10 @@ AUTHOR_FEED_RSS = None
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+         ('Jinja2', 'http://jinja.pocoo.org/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Twitter', 'https://twitter.com/sunrize531'),)
 
 DEFAULT_PAGINATION = 20
 
@@ -44,3 +42,5 @@ MARKDOWN = {
     },
     'output_format': 'html5',
 }
+
+STATIC_PATHS = ['images']

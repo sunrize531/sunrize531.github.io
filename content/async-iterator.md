@@ -10,7 +10,6 @@ obvious reasons. So here it is.
 
 ## Iterator itself
 
-Well, we don't really need to implement mongo cursor to iterate over mongo cursor, but what if it's not mongo cursor.
 Here's very basic example:
 
 ```javascript
@@ -26,7 +25,7 @@ function asyncIterator() {
 }
 ```
 
-Or it can be class, like mongo cursor, even...
+Or it can be class.
 
 ```javascript
 const DONE = {};
@@ -46,8 +45,75 @@ class AsyncIterator() {
 }
 ```
 
-This thing isn't really async, I know... But we got an idea. For example, if we wanted to walk the directory,
-it would be something like this:
+Not really async, I know... But we got an idea.
+
+## Iteratee
+
+So, this is how we iterate:
 
 ```javascript
+function action(item)  {
+    return doSomethingAsyncWithItem(item)
+        .then(function (result) {
+            console.info(result);
+            return;
+        });
+}
+
+function iterate(iterator, iteratee) {
+    return iterator().then(function (item) {
+        if (item !== DONE) {
+            return iteratee(item).then(function () {
+                iterate(iterator, iteratee);
+            });
+        } else {
+            return DONE;
+        }
+    });
+}
+
+iterate(new AsyncIterator(5), action)
+    .catch(function (err) {
+        console.error(err.stack);
+        process.exit(1);
+    });
+```
+
+## MongoDB example
+
+```javascript
+const {MongoClient} = require('mongodb');
+const db = MongoClient.connect('mongodb://localhost')
+    .then(function (client) {
+        return client.db('items');
+    })
+    .then(function (db) {
+        let byCategory = new Map();
+        function readItems(category) {
+            return db.collection('items').find({category: category._id}).toArray()
+                .then(function (items) {
+                    byCategory.set(category, items);
+                });
+        }
+
+        function iterate(cursor, iteratee) {
+            return cursor.next()
+                .then(function (i) {
+                    if (i) {
+                        return iteratee(i)
+                            .then(function () {
+                                return iterate(cursor, iteratee);
+                            });
+                    }
+                    return byCategory;
+                });
+        }
+
+        // We don't need to implement iterator here, just cursor will do
+        return iterate(db.collection('categories').find(), readItems);
+    })
+    .catch(function (err) {
+        console.error(err.stack);
+        process.exit(1);
+    });
 ```
