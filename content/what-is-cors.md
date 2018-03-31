@@ -39,7 +39,7 @@ is easy-peasy. If they bothered to setup phishing page they can surely setup thi
 Very little effort needed for this, so in most cases I'd recommend...
 
 # Just allow everything
-np
+
 Ok, we write public service, and we actually *want* people use it.
 Although we can't really allow everything anyway, we got to explicitely enumerate request methods and
 headers and things like that. Here's middleware.

@@ -81,6 +81,7 @@ def publish():
 
 def gh_pages():
     """Publish to GitHub Pages"""
-    rebuild()
-    # local("ghp-import -b {github_pages_branch} -r {github_pages_remote} {deploy_path} -p -f".format(**env))
+    clean()
+    build()
+    local("ghp-import output")
     local("git push user-page master:gh_pages")
