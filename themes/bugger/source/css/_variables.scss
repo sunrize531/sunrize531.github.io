@@ -1,0 +1,61 @@
+$font-size: 16px;
+$line-height: 1.25em;
+
+// de-solarised base colours
+$base-03: #222222;
+$base-02: #272c30;
+$base-01: #666369;
+$base-00: #706f79;
+$base-0: #87878e;
+$base-1: #9b9ba3;
+$base-2: #e6e4e1;
+$base-3: #f2f2f2;
+
+// de-solarised accents
+$yellow: #8B9929;
+$orange: #ad5919;
+$red: #cd2e22;
+$magenta: #c72e77;
+$violet: #7963c2;
+$blue: #487bd2;
+$cyan: #3e9290;
+$green: #007330;
+
+// Paddings and margins
+
+$padding-top: $line-height;
+$padding-horisontal: $line-height / 2 * 3;
+$padding-bottom: $line-height * 2;
+
+// Some handy mixins
+
+@mixin padding-vertical($multiplier: 0.5) {
+    padding-top: $multiplier * $padding-top;
+    padding-bottom: $multiplier * $padding-bottom;
+}
+
+@mixin padding-horisontal($multiplier: 0.5) {
+    padding-left: $multiplier * $padding-horisontal;
+    padding-right: $multiplier * $padding-horisontal;
+}
+
+@mixin padding($multiplier: 0.5) {
+    @include padding-vertical($multiplier);
+    @include padding-horisontal($multiplier);
+}
+
+@mixin margin-vertical($multiplier: 0.5) {
+    margin-top: $multiplier * $padding-top;
+    margin-bottom: $multiplier * $padding-bottom;    
+}
+
+@mixin margin-horisontal($multiplier: 0.5) {
+    margin-left: $multiplier * $padding-horisontal;
+    margin-right: $multiplier * $padding-horisontal;
+}
+
+@mixin margin($multiplier: 0.5) {
+    @include margin-vertical($multiplier);
+    @include margin-horisontal($multiplier);
+}
+
