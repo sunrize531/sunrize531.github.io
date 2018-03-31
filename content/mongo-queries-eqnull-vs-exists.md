@@ -52,7 +52,7 @@ db.getCollection('items').find({$or: [{field: {$exists: false}}, {field: {$lt: 7
 ```
 
 Query #1 would return all the documents we want, i.e. `['00001', '00002, '00003']`. But there's a caveat.
-It appears that it does `COLSCAN` if we there're lots of documents with missing `value` field.
+It appears that it does `COLSCAN` if there're lots of documents with missing `value` field.
 
 Query #2 would **not** return `'00003'`, cause `value` field does exist.
 But it apparently runs `FETCH` which is much much faster.
@@ -73,4 +73,4 @@ Although this is actually the case for separate article.
 
 1. Try to pre-populate indexed fields, if it's possible
 2. If you're going to use comparison operators - don't mix up the types, you might be surprised with results.
-3. If you need to include the documents with missing indexed field - use `{value: {$exist: false}}` in favour of `{value: null}`.
+3. If you need to include the documents with missing indexed field - use `{value: {$exist: false}}` in favour of `{value: null}`.fab 
