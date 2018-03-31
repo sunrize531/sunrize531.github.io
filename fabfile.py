@@ -83,5 +83,4 @@ def gh_pages():
     """Publish to GitHub Pages"""
     clean()
     build()
-    local("ghp-import output")
-    local("git push user-page master:gh_pages")
+    local("ghp-import -r origin -b master -c bugger.online -p -f output")
