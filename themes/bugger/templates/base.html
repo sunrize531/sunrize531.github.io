@@ -1,18 +1,49 @@
-{% extends "!simple/base.html" %}
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+    {% block head %}
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    {% endblock head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css" />
 
-{% block head %}
-{{ super() }}
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117058772-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-117058772-1');
+    </script>
+</head>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117058772-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<body id="index" class="home">
+    <header id="banner" class="body">
+        <h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+        <h2 id="subtitle">{{ SITESUBTITLE }}</h2>
+    </header>
 
-  gtag('config', 'UA-117058772-1');
-</script>
-{% endblock %}
+    <nav id="menu">
+        <h2>Categories:</h2>
+        <ul id="categories">
+            {% for cat, null in categories -%}
+            <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+            {%- endfor %}  
+        </ul>
+        <h2>Tags:</h2>
+        <section id="tags">
+            {% for t, null in tags -%}
+            <a href="{{ SITEURL }}/{{ t.url }}">{{ t }}</a> {% endfor %}
+        </section>
+    </nav>
 
+    {% block content %}
+    {% endblock %}
+
+    <footer id="contentinfo" class="body">
+        <address id="about" class="vcard body">
+            Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+            which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+    </footer>
+</body>

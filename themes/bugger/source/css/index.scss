@@ -22,6 +22,54 @@ a:visited {
 }
 
 body#index {
+    // Main flex-box layout
+    display: flex;
+    flex-wrap: wrap;
+
+    header#banner {
+        flex: 0 0 100%;
+        order: 0;
+
+        h1 {
+            line-height: 0.3em;
+            & > a {
+                color: $base-03;
+                text-decoration: none;
+                
+                &:visited {
+                    color: $base-03;
+                    text-decoration: none;
+                }
+    
+                &:hover {
+                    color: $base-02;
+                    text-decoration: underline;
+                }    
+            }
+        }
+
+        h2#subtitle {
+            font-size: $font-size;
+            line-height: $line-height;
+        }
+    }
+
+    nav#menu {
+        flex: 0 0 300px;
+        order: 2;
+    }
+
+    section#content {
+        flex: 1 0;
+        order: 1;
+        padding-right: $padding-horisontal;
+    }
+
+    footer#contentinfo {
+        flex: 0 0 100%;
+        order: 3;
+    }
+
     ol#post-list {
         list-style: none;
         padding: 0;

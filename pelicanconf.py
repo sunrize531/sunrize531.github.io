@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = 'Ivan Filimonov'
 SITENAME = 'BUGGER.ONLINE'
 SITEURL = ''
+SITESUBTITLE = 'Just things I keep googling at work'
 
 PATH = 'content'
 
