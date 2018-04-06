@@ -2,6 +2,7 @@ Title: Mongo performance - finding documents with missing field.
 Date: 2018-03-31 12:00
 Category: MongoDB, Weirdness
 Summary: Optimising mongo query for documents where certain indexed field doesn't exist or less then value.
+Tags: mongodb, optimisation, guide
 
 So, we need to find the documents with value in certain field less then given.
 It's not a problem if the field exists in all the documents and it's indexed, of course.

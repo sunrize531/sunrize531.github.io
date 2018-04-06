@@ -1,7 +1,8 @@
-Title: Asyncronous Iterator
+Title: Promises - Asyncronous Iterator
 Date: 2018-03-03 12:00
 Category: Patterns
 Summary: I needed to run something async on mongo cursor and I didn't want to read everything into memory, for obvious reasons
+Tags: promise, javascript, node, pattern
 
 # How to asyncroniously iterate through asyncronous iterator
 

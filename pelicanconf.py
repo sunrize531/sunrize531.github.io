@@ -44,3 +44,5 @@ MARKDOWN = {
 }
 
 STATIC_PATHS = ['images']
+
+DISPLAY_CATEGORIES_ON_MENU = True

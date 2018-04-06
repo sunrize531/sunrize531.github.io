@@ -2,6 +2,7 @@ Title: Three ways to allow CORS
 Summary: How to make crossdomain calls from browser without breaking inner peace.
 Date: 2018-02-28 12:00
 Category: Guides
+Tags: cors, http, guide
 
 # What is CORS
 
