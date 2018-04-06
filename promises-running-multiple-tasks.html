@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>BUGGER.ONLINE</title>
+
+
+    <meta name="tags" content="promise" />
+    <meta name="tags" content="javascript" />
+    <meta name="tags" content="node" />
+    <meta name="tags" content="pattern" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117058772-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-117058772-1');
+    </script>
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+        <h1><a href="/">BUGGER.ONLINE</a></h1>
+        <h2 id="subtitle">Just things I keep googling at work</h2>
+    </header>
+
+    <nav id="menu">
+        <h2>Categories:</h2>
+        <ul id="categories">
+<li><a href="/category/guides.html">Guides</a></li><li class="active"><a href="/category/patterns.html">Patterns</a></li><li><a href="/category/tests.html">Tests</a></li>  
+        </ul>
+        <h2>Tags:</h2>
+        <section id="tags">
+<a href="/tag/promise.html">promise</a> <a href="/tag/javascript.html">javascript</a> <a href="/tag/node.html">node</a> <a href="/tag/pattern.html">pattern</a> <a href="/tag/mongodb.html">mongodb</a> <a href="/tag/optimisation.html">optimisation</a> <a href="/tag/guide.html">guide</a> <a href="/tag/cors.html">cors</a> <a href="/tag/http.html">http</a>         </section>
+    </nav>
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/promises-running-multiple-tasks.html" rel="bookmark"
+         title="Permalink to Promises - Running multiple tasks">Promises - Running multiple tasks</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2018-04-06T20:00:00+00:00">
+      Fri 06 April 2018
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/ivan-filimonov.html">Ivan Filimonov</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h1>Run asyncronous functions in parallel</h1>
+<p>Just as simple as it can be.</p>
+<div class="highlight"><pre><span></span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">task1</span><span class="p">(),</span> <span class="nx">task2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nx">task4</span><span class="p">(</span><span class="s1">&#39;firstArgument&#39;</span><span class="p">)])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">([</span><span class="nx">result1</span><span class="p">,</span> <span class="nx">result2</span><span class="p">,</span> <span class="nx">result3</span><span class="p">])</span> <span class="p">{</span>
+        <span class="c1">// This will be called when all the tasks resolved.</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// This will be called if at list one of the tasks was rejected.</span>
+    <span class="p">});</span>
+</pre></div>
+
+
+<h1>Run asyncronous functions in series</h1>
+<p>Little bit trickier here, still simple enough.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">task1</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">task2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">task4</span><span class="p">(</span><span class="s1">&#39;firstArgument&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Triggers when all the tasks finished</span>
+        <span class="kd">let</span> <span class="p">[</span><span class="nx">result1</span><span class="p">,</span> <span class="nx">result2</span><span class="p">,</span> <span class="nx">result3</span><span class="p">]</span> <span class="o">=</span> <span class="nx">results</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Triggers if any of previous things was rejected.</span>
+    <span class="p">});</span>
+</pre></div>
+
+
+<h1>Applying some async method to iterable in series</h1>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">mapSeries</span><span class="p">(</span><span class="nx">iterable</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="kd">let</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">item</span> <span class="k">in</span> <span class="nx">iterable</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">p</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">method</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+                <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">eachSerise</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nx">someFunction</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Triggers when all the tasks finished</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Triggers when any of tasks or previous handler was rejected.</span>
+    <span class="p">})</span>
+</pre></div>
+  </div><!-- /.entry-content -->
+</section>
+
+    <footer id="contentinfo" class="body">
+        <address id="about" class="vcard body">
+            Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+            which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+    </footer>
+</body>
