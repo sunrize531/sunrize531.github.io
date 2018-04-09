@@ -64,18 +64,18 @@ from <code>https://google.com</code> and it wants to send the request to
 <li><a href="https://en.wikipedia.org/wiki/Same-origin_policy">Same-origin policy (wikipedia)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin resource sharing (wikipedia)</a></li>
 </ul>
-<h1>Why?</h1>
-<p>CORS is very basic protection against phishing and some other nasty stuff. 
+<h1>Why</h1>
+<p>CORS is very basic protection against phishing and some other nasty stuff.
 It won't be possible to just copy your html page,
 change it a little bit, put it somewhere and somehow get your users on it. It won't just work,
 cause browser won't send the requests on your server.</p>
-<h1>How it works?</h1>
+<h1>How it works</h1>
 <p>Before sending the request to different domain using anything except GET method,
 i.e. POST, PUT, DELETE etc browser would send the OPTIONS request first, without empty body.
 It called "preflight" call. If our server responds on this call with a certain set of headers -
 browser would send the actual call.</p>
 <p><img alt="OPTIONS CORS request in Chrome debug panel" src="/images/what-is-cors-001.png"></p>
-<h1>Is it really secure?</h1>
+<h1>Is it really secure</h1>
 <p>Nah. Implementing proxy which would forward requests to your service with or without preflights
 is easy-peasy. If they bothered to setup phishing page they can surely setup this kind of thing as well.
 Very little effort needed for this, so in most cases I'd recommend...</p>
