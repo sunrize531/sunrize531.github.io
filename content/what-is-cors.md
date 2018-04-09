@@ -17,14 +17,14 @@ More information:
 * [Same-origin policy (wikipedia)](https://en.wikipedia.org/wiki/Same-origin_policy)
 * [Cross-origin resource sharing (wikipedia)](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 
-# Why?
+# Why
 
-CORS is very basic protection against phishing and some other nasty stuff. 
+CORS is very basic protection against phishing and some other nasty stuff.
 It won't be possible to just copy your html page,
 change it a little bit, put it somewhere and somehow get your users on it. It won't just work,
 cause browser won't send the requests on your server.
 
-# How it works?
+# How it works
 
 Before sending the request to different domain using anything except GET method,
 i.e. POST, PUT, DELETE etc browser would send the OPTIONS request first, without empty body.
@@ -33,7 +33,7 @@ browser would send the actual call.
 
 ![OPTIONS CORS request in Chrome debug panel]({filename}/images/what-is-cors-001.png)
 
-# Is it really secure?
+# Is it really secure
 
 Nah. Implementing proxy which would forward requests to your service with or without preflights
 is easy-peasy. If they bothered to setup phishing page they can surely setup this kind of thing as well.

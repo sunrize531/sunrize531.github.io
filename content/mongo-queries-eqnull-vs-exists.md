@@ -8,7 +8,7 @@ So, we need to find the documents with value in certain field less then given.
 It's not a problem if the field exists in all the documents and it's indexed, of course.
 I.e. our collection looks like:
 
-```
+```json
 {"_id" : "00001", "value": 1}
 {"_id" : "00002", "value": 1}
 {"_id" : "00003", "value": 1}
@@ -17,7 +17,7 @@ I.e. our collection looks like:
 
 And it has an index `{name: value, key: {value: 1}}`. Then we can just do:
 
-```
+```mongo
 db.getCollection('items').find({value: {$lt: 4}});
 ```
 
@@ -28,7 +28,7 @@ doesn't depend on number of documents, etc. But what if the value doesn't exist 
 
 If our collection looks like:
 
-```
+```json
 {"_id" : "00001", "value": 1}
 {"_id" : "00002"}
 {"_id" : "00003", "value": null}
@@ -42,13 +42,13 @@ There're 2 ways to query that:
 
 1\. Check for null
 
-```
+```mongo
 db.getCollection('items').find({$or: [{field: null}, {field: {$lt: 7}}]});
 ```
 
 2\. Check for non-existing field
 
-```
+```mongo
 db.getCollection('items').find({$or: [{field: {$exists: false}}, {field: {$lt: 7}}]});
 ```
 
