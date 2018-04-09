@@ -4,169 +4,162 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>/</loc>
-<lastmod>2018-04-09T21:15:47-00:00</lastmod>
+<loc>http://bugger.online/</loc>
+<lastmod>2018-04-09T21:34:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/archives.html</loc>
-<lastmod>2018-04-09T21:15:47-00:00</lastmod>
+<loc>http://bugger.online/archives.html</loc>
+<lastmod>2018-04-09T21:34:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tags.html</loc>
-<lastmod>2018-04-09T21:15:47-00:00</lastmod>
+<loc>http://bugger.online/tags.html</loc>
+<lastmod>2018-04-09T21:34:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/categories.html</loc>
-<lastmod>2018-04-09T21:15:47-00:00</lastmod>
+<loc>http://bugger.online/categories.html</loc>
+<lastmod>2018-04-09T21:34:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/lost-and-found-april-2018.html</loc>
+<loc>http://bugger.online/lost-and-found-april-2018.html</loc>
 <lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/promises-running-multiple-tasks.html</loc>
+<loc>http://bugger.online/promises-running-multiple-tasks.html</loc>
 <lastmod>2018-04-06T20:00:00+00:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/mongo-performance-finding-documents-with-missing-field.html</loc>
+<loc>http://bugger.online/mongo-performance-finding-documents-with-missing-field.html</loc>
 <lastmod>2018-03-31T12:00:00+00:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/promises-asyncronous-iterator.html</loc>
+<loc>http://bugger.online/promises-asyncronous-iterator.html</loc>
 <lastmod>2018-03-03T12:00:00+00:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/three-ways-to-allow-cors.html</loc>
+<loc>http://bugger.online/three-ways-to-allow-cors.html</loc>
 <lastmod>2018-02-28T12:00:00+00:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/guides.html</loc>
+<loc>http://bugger.online/category/guides.html</loc>
 <lastmod>2018-03-31T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/lost-and-found.html</loc>
+<loc>http://bugger.online/category/lost-and-found.html</loc>
 <lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/patterns.html</loc>
+<loc>http://bugger.online/category/patterns.html</loc>
 <lastmod>2018-04-06T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/node.html</loc>
+<loc>http://bugger.online/tag/node.html</loc>
 <lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/webpack.html</loc>
+<loc>http://bugger.online/tag/webpack.html</loc>
 <lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/cors.html</loc>
+<loc>http://bugger.online/tag/cors.html</loc>
 <lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/collections.html</loc>
+<loc>http://bugger.online/tag/collections.html</loc>
 <lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/promise.html</loc>
+<loc>http://bugger.online/tag/promise.html</loc>
 <lastmod>2018-04-06T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/javascript.html</loc>
+<loc>http://bugger.online/tag/javascript.html</loc>
 <lastmod>2018-04-06T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/pattern.html</loc>
+<loc>http://bugger.online/tag/pattern.html</loc>
 <lastmod>2018-04-06T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/mongodb.html</loc>
+<loc>http://bugger.online/tag/mongodb.html</loc>
 <lastmod>2018-03-31T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/optimisation.html</loc>
+<loc>http://bugger.online/tag/optimisation.html</loc>
 <lastmod>2018-03-31T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/guide.html</loc>
+<loc>http://bugger.online/tag/guide.html</loc>
 <lastmod>2018-03-31T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/http.html</loc>
+<loc>http://bugger.online/tag/http.html</loc>
 <lastmod>2018-02-28T12:00:00+00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/author/ivan-filimonov.html</loc>
-<lastmod>2018-04-09T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
