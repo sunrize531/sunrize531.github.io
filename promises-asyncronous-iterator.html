@@ -31,11 +31,11 @@
     <nav id="menu">
         <h2>Categories:</h2>
         <ul id="categories">
-<li><a href="/category/guides.html">Guides</a></li><li class="active"><a href="/category/patterns.html">Patterns</a></li><li><a href="/category/tests.html">Tests</a></li>  
+<li><a href="/category/guides.html">Guides</a></li><li><a href="/category/lost-and-found.html">Lost and found</a></li><li class="active"><a href="/category/patterns.html">Patterns</a></li>  
         </ul>
         <h2>Tags:</h2>
         <section id="tags">
-<a href="/tag/promise.html">promise</a> <a href="/tag/javascript.html">javascript</a> <a href="/tag/node.html">node</a> <a href="/tag/pattern.html">pattern</a> <a href="/tag/mongodb.html">mongodb</a> <a href="/tag/optimisation.html">optimisation</a> <a href="/tag/guide.html">guide</a> <a href="/tag/cors.html">cors</a> <a href="/tag/http.html">http</a>         </section>
+<a href="/tag/node.html">node</a> <a href="/tag/webpack.html">webpack</a> <a href="/tag/cors.html">cors</a> <a href="/tag/collections.html">collections</a> <a href="/tag/promise.html">promise</a> <a href="/tag/javascript.html">javascript</a> <a href="/tag/pattern.html">pattern</a> <a href="/tag/mongodb.html">mongodb</a> <a href="/tag/optimisation.html">optimisation</a> <a href="/tag/guide.html">guide</a> <a href="/tag/http.html">http</a>         </section>
     </nav>
 
 <section id="content" class="body">
@@ -131,7 +131,8 @@ obvious reasons. So here how it works.</p>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">db</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nx">byCategory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
         <span class="kd">function</span> <span class="nx">readItems</span><span class="p">(</span><span class="nx">category</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span><span class="nx">category</span><span class="o">:</span> <span class="nx">category</span><span class="p">.</span><span class="nx">_id</span><span class="p">}).</span><span class="nx">toArray</span><span class="p">()</span>
+            <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">category</span><span class="o">:</span> <span class="nx">category</span><span class="p">.</span><span class="nx">_id</span><span class="p">}).</span><span class="nx">toArray</span><span class="p">()</span>
                 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
                     <span class="nx">byCategory</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">category</span><span class="p">,</span> <span class="nx">items</span><span class="p">);</span>
                 <span class="p">});</span>

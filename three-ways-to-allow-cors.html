@@ -30,11 +30,11 @@
     <nav id="menu">
         <h2>Categories:</h2>
         <ul id="categories">
-<li class="active"><a href="/category/guides.html">Guides</a></li><li><a href="/category/patterns.html">Patterns</a></li><li><a href="/category/tests.html">Tests</a></li>  
+<li class="active"><a href="/category/guides.html">Guides</a></li><li><a href="/category/lost-and-found.html">Lost and found</a></li><li><a href="/category/patterns.html">Patterns</a></li>  
         </ul>
         <h2>Tags:</h2>
         <section id="tags">
-<a href="/tag/promise.html">promise</a> <a href="/tag/javascript.html">javascript</a> <a href="/tag/node.html">node</a> <a href="/tag/pattern.html">pattern</a> <a href="/tag/mongodb.html">mongodb</a> <a href="/tag/optimisation.html">optimisation</a> <a href="/tag/guide.html">guide</a> <a href="/tag/cors.html">cors</a> <a href="/tag/http.html">http</a>         </section>
+<a href="/tag/node.html">node</a> <a href="/tag/webpack.html">webpack</a> <a href="/tag/cors.html">cors</a> <a href="/tag/collections.html">collections</a> <a href="/tag/promise.html">promise</a> <a href="/tag/javascript.html">javascript</a> <a href="/tag/pattern.html">pattern</a> <a href="/tag/mongodb.html">mongodb</a> <a href="/tag/optimisation.html">optimisation</a> <a href="/tag/guide.html">guide</a> <a href="/tag/http.html">http</a>         </section>
     </nav>
 
 <section id="content" class="body">
@@ -87,8 +87,10 @@ headers and things like that. Here's middleware.</p>
 <span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">).</span><span class="nx">Router</span><span class="p">();</span>
 <span class="nx">router</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTIONS,GET,POST&#39;</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span> <span class="s1">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS,GET,POST&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Max-Age&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span> <span class="p">{</span>
@@ -137,8 +139,10 @@ domain, for example.</p>
     <span class="p">}</span>
 
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="nx">origin</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="p">,</span> <span class="s1">&#39;POST,OPTIONS&#39;</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span> <span class="s1">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;POST,OPTIONS&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Max-Age&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span> <span class="p">{</span>
@@ -155,7 +159,7 @@ domain, for example.</p>
 <p>In theory, only browsers need to run preflight requests.
 So if there were no preflight request - then it's likely not a browser.
 Or not well behaving browser. So we might as well give them 401 straight away.
-100% paranoya mode. It won't safe us from malicious proxy though. 
+100% paranoya mode. It won't safe us from malicious proxy though.
 They can fake everything, including preflight calls.</p>
 <p>But it would surely make their life little harder, cause they would need to guess
 that we're doing this additional check and implement additional OPTIONS call.</p>
@@ -169,7 +173,8 @@ i.e. running requests with preflight.</p>
     <span class="c1">// Very basic client&#39;s fingerprint.</span>
     <span class="c1">// Could send some random identifier from client if we really need to,</span>
     <span class="c1">// or use some other techniques like cookies or even</span>
-    <span class="c1">// [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).</span>
+    <span class="c1">// Canvas Fingerprinting.</span>
+    <span class="c1">//</span>
     <span class="c1">// Although the entire thing isn&#39;t super secure anyway, so this will do.</span>
 
     <span class="kd">let</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">&#39;sha256&#39;</span><span class="p">);</span>
@@ -184,7 +189,8 @@ i.e. running requests with preflight.</p>
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="nx">origin</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="p">,</span> <span class="s1">&#39;POST,OPTIONS&#39;</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span> <span class="s1">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Max-Age&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span> <span class="c1">// Note shorter age then in lru-cache entries.</span>
+    <span class="c1">// Note shorter age then in lru-cache entries.</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Max-Age&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="nx">router</span><span class="p">.</span><span class="nx">options</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
