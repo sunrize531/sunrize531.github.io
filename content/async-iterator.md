@@ -91,7 +91,8 @@ const db = MongoClient.connect('mongodb://localhost')
     .then(function (db) {
         let byCategory = new Map();
         function readItems(category) {
-            return db.collection('items').find({category: category._id}).toArray()
+            return db.collection('items')
+                .find({category: category._id}).toArray()
                 .then(function (items) {
                     byCategory.set(category, items);
                 });

@@ -40,7 +40,8 @@ h5, h6 {
   margin-bottom: 1.25em; }
 
 pre {
-  margin: 0; }
+  margin: 0;
+  font-size: 0.75em; }
 
 body {
   background-color: #f2f2f2;
@@ -81,9 +82,10 @@ body#index {
     flex: 0 0 300px;
     order: 2; }
   body#index section#content {
-    flex: 1 0;
+    flex: 0 0 calc(100% - 300px - 3.75em);
     order: 1;
-    padding-right: 1.875em; }
+    padding-right: 1.875em;
+    overflow: hidden; }
   body#index footer#contentinfo {
     flex: 0 0 100%;
     order: 3; }

@@ -60,9 +60,10 @@ body#index {
     }
 
     section#content {
-        flex: 1 0;
+        flex: 0 0 calc(100% - 300px - #{$padding-horisontal * 2});
         order: 1;
         padding-right: $padding-horisontal;
+        overflow: hidden;
     }
 
     footer#contentinfo {

@@ -50,8 +50,10 @@ const {Router} = require('express');
 const router = require('express').Router();
 router.use(function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'OPTIONS,GET,POST');
-    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.set('Access-Control-Allow-Methods',
+        'OPTIONS,GET,POST');
+    res.set('Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept');
     res.set('Access-Control-Max-Age', 300);
 
     if (req.method === 'OPTIONS') {
@@ -104,8 +106,10 @@ router.use(function (req, res, next) {
     }
 
     res.set('Access-Control-Allow-Origin', origin);
-    res.set('Access-Control-Allow-Methods', 'POST,OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.set('Access-Control-Allow-Methods',
+        'POST,OPTIONS');
+    res.set('Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept');
     res.set('Access-Control-Max-Age', 300);
 
     if (req.method === 'OPTIONS') {
@@ -123,7 +127,7 @@ router.use(function (req, res, next) {
 In theory, only browsers need to run preflight requests.
 So if there were no preflight request - then it's likely not a browser.
 Or not well behaving browser. So we might as well give them 401 straight away.
-100% paranoya mode. It won't safe us from malicious proxy though. 
+100% paranoya mode. It won't safe us from malicious proxy though.
 They can fake everything, including preflight calls.
 
 But it would surely make their life little harder, cause they would need to guess
@@ -141,7 +145,8 @@ function requestFingerPrint(req) {
     // Very basic client's fingerprint.
     // Could send some random identifier from client if we really need to,
     // or use some other techniques like cookies or even
-    // [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).
+    // Canvas Fingerprinting.
+    //
     // Although the entire thing isn't super secure anyway, so this will do.
 
     let hash = crypto.createHash('sha256');
@@ -156,7 +161,8 @@ function setCorsHeaders(res, origin, methods) {
     res.set('Access-Control-Allow-Origin', origin);
     res.set('Access-Control-Allow-Methods', 'POST,OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.set('Access-Control-Max-Age', 200); // Note shorter age then in lru-cache entries.
+    // Note shorter age then in lru-cache entries.
+    res.set('Access-Control-Max-Age', 200);
 }
 
 router.options(function (req, res) {
