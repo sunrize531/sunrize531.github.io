@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Ivan Filimonov'
 SITENAME = 'BUGGER.ONLINE'
-SITEURL = ''
+SITEURL = 'http://bugger.online'
 SITESUBTITLE = 'Just things I keep googling at work'
 
 PATH = 'content'
@@ -63,5 +63,6 @@ SITEMAP = {
         'articles': 'weekly',
         'indexes': 'daily',
         'pages': 'monthly'
-    }
+    },
+    'exclude': ['author/']
 }

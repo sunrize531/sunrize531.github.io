@@ -43,7 +43,7 @@ def rebuild():
 
 def regenerate():
     """Automatically regenerate site upon file modification"""
-    local('pelican -r -s pelicanconf.py')
+    local('pelican -r -s pelicanconf.py -t ./themes/bugger --relative-urls')
 
 def serve():
     """Serve site at http://localhost:8000/"""

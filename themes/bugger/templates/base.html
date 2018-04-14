@@ -35,6 +35,12 @@
             {% for t, null in tags -%}
             <a href="{{ SITEURL }}/{{ t.url }}">{{ t }}</a> {% endfor %}
         </section>
+        <h2>Information:</h2>
+        <section id="pages">
+            {% for p in pages -%}
+            <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+            {%- endfor %}
+        </section>
     </nav>
 
     {% block content %}
