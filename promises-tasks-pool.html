@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>BUGGER.ONLINE</title>
+
+
+    <meta name="tags" content="promise" />
+    <meta name="tags" content="javascript" />
+    <meta name="tags" content="node" />
+    <meta name="tags" content="pattern" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="http://bugger.online/theme/css/style.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117058772-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-117058772-1');
+    </script>
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+        <h1><a href="http://bugger.online/">BUGGER.ONLINE</a></h1>
+        <h2 id="subtitle">Just things I keep googling at work</h2>
+    </header>
+
+    <nav id="menu">
+        <h2>Categories:</h2>
+        <ul id="categories">
+<li><a href="http://bugger.online/category/guides.html">Guides</a></li><li><a href="http://bugger.online/category/lost-and-found.html">Lost and found</a></li><li class="active"><a href="http://bugger.online/category/patterns.html">Patterns</a></li>  
+        </ul>
+        <h2>Tags:</h2>
+        <section id="tags">
+<a href="http://bugger.online/tag/promise.html">promise</a> <a href="http://bugger.online/tag/javascript.html">javascript</a> <a href="http://bugger.online/tag/node.html">node</a> <a href="http://bugger.online/tag/pattern.html">pattern</a> <a href="http://bugger.online/tag/webpack.html">webpack</a> <a href="http://bugger.online/tag/cors.html">cors</a> <a href="http://bugger.online/tag/collections.html">collections</a> <a href="http://bugger.online/tag/mongodb.html">mongodb</a> <a href="http://bugger.online/tag/optimisation.html">optimisation</a> <a href="http://bugger.online/tag/guide.html">guide</a> <a href="http://bugger.online/tag/http.html">http</a>         </section>
+        <h2>Information:</h2>
+        <section id="pages">
+<li><a href="http://bugger.online/pages/about-this-site-and-myself.html">About this site and myself</a></li>        </section>
+    </nav>
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://bugger.online/promises-tasks-pool.html" rel="bookmark"
+         title="Permalink to Promises - Tasks pool">Promises - Tasks pool</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2018-04-16T20:00:00+00:00">
+      Mon 16 April 2018
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://bugger.online/author/ivan-filimonov.html">Ivan Filimonov</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h1>Running tasks in small batches</h1>
+<p>So, we have a pool of tasks, but we don't want to launch them simulatneously.
+Instead, we're going to run them in small batches, like this:</p>
+<div class="highlight"><pre><span></span><span class="c1">// This is our task</span>
+<span class="kd">function</span> <span class="nx">wait</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">n</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// And this is an iterator</span>
+<span class="kd">let</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kr">const</span> <span class="nx">LIMIT</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">drainPool</span><span class="p">(</span><span class="nx">pool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">pool</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">size</span> <span class="o">&lt;</span> <span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">wait</span><span class="p">(</span><span class="nx">pool</span><span class="p">.</span><span class="nx">pop</span><span class="p">())</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+                <span class="nx">queue</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">drainPool</span><span class="p">(</span><span class="nx">pool</span><span class="p">);</span>
+            <span class="p">});</span>
+        <span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([...</span> <span class="nx">queue</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">pool</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="nx">pool</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="nx">drainPool</span><span class="p">(</span><span class="nx">pool</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p><a href="https://repl.it/@sunrize531/async-pool">Check it out at repl.it</a></p>
+<h1>We can do this with async iterator too</h1>
+<p>Example with mongo cursor:</p>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">connectDB</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">().</span><span class="nx">sort</span><span class="p">({</span><span class="nx">time</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}).</span><span class="nx">limit</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">LIMIT</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">function</span> <span class="nx">drainPool</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">cursor</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">drainPool</span><span class="p">(</span><span class="nx">item</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">queue</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+                        <span class="nx">resulst</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+                        <span class="k">return</span> <span class="nx">process</span><span class="p">();</span>
+                    <span class="p">});</span>
+                    <span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+                    <span class="k">return</span> <span class="nx">p</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">})</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([...</span> <span class="nx">queue</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">drainPool</span><span class="p">();</span>
+</pre></div>
+
+
+<p>Not too sure this one works though... Gonna need to check it at some point.</p>
+  </div><!-- /.entry-content -->
+</section>
+
+    <footer id="contentinfo" class="body">
+        <address id="about" class="vcard body">
+            Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+            which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+    </footer>
+</body>
