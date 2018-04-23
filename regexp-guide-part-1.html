@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>BUGGER.ONLINE</title>
+
+
+    <meta name="tags" content="guide" />
+    <meta name="tags" content="regexp" />
+    <meta name="tags" content="javascript" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="http://bugger.online/theme/css/style.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117058772-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-117058772-1');
+    </script>
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+        <h1><a href="http://bugger.online/">BUGGER.ONLINE</a></h1>
+        <h2 id="subtitle">Just things I keep googling at work</h2>
+    </header>
+
+    <nav id="menu">
+        <h2>Categories:</h2>
+        <ul id="categories">
+<li class="active"><a href="http://bugger.online/category/guides.html">Guides</a></li><li><a href="http://bugger.online/category/lost-and-found.html">Lost and found</a></li><li><a href="http://bugger.online/category/patterns.html">Patterns</a></li>  
+        </ul>
+        <h2>Tags:</h2>
+        <section id="tags">
+<a href="http://bugger.online/tag/guide.html">guide</a> <a href="http://bugger.online/tag/regexp.html">regexp</a> <a href="http://bugger.online/tag/javascript.html">javascript</a> <a href="http://bugger.online/tag/promise.html">promise</a> <a href="http://bugger.online/tag/node.html">node</a> <a href="http://bugger.online/tag/pattern.html">pattern</a> <a href="http://bugger.online/tag/webpack.html">webpack</a> <a href="http://bugger.online/tag/cors.html">cors</a> <a href="http://bugger.online/tag/collections.html">collections</a> <a href="http://bugger.online/tag/mongodb.html">mongodb</a> <a href="http://bugger.online/tag/optimisation.html">optimisation</a> <a href="http://bugger.online/tag/http.html">http</a>         </section>
+        <h2>Information:</h2>
+        <section id="pages">
+<li><a href="http://bugger.online/pages/about-this-site-and-myself.html">About this site and myself</a></li>        </section>
+    </nav>
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://bugger.online/regexp-guide-part-1.html" rel="bookmark"
+         title="Permalink to Regular expressions - guide (part 1)">Regular expressions - guide (part 1)</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2018-04-18T20:00:00+00:00">
+      Wed 18 April 2018
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://bugger.online/author/ivan-filimonov.html">Ivan Filimonov</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>This guide assumes that you're familiar with the subject. If not -
+here's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">the reference</a>.
+And <a href="https://regex101.com/">a sandbox</a>.</p>
+<p>In the part 1 we'll look into <code>RegExp.prototype.test</code> method. Here are some use cases:</p>
+<ol>
+<li>User input validation (90% of all cases).</li>
+<li>Switch-like checks control structures.</li>
+<li>Exception handling, cause JavaScript doesn't have normal catch atm, and some errors.</li>
+</ol>
+<h2>Single line mode, <em>without</em> \m switch</h2>
+<p>Single line mode means that <code>.</code> character class doesn't match with any end of line characters, and also <code>^</code> and <code>$</code>
+will match the start end the end of input respectivele.</p>
+<p>Here, how it works:</p>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">TEST_PIECE</span> <span class="o">=</span> <span class="sr">/123/</span><span class="p">;</span>
+<span class="nx">TEST_PIECE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_PIECE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;51234&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_PIECE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;5\n 123 \t4783&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="kr">const</span> <span class="nx">TEST_WORD</span> <span class="o">=</span> <span class="sr">/\b123\b/</span><span class="p">;</span>
+<span class="nx">TEST_WORD</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_WORD</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;51234&#39;</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">TEST_WORD</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;5,123-4&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_WORD</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;Look mum, I can count 123-4&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="kr">const</span> <span class="nx">TEST_INPUT</span> <span class="o">=</span> <span class="sr">/^12.*3$/</span><span class="p">;</span>
+<span class="nx">TEST_INPUT</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="mi">1243</span><span class="p">);</span> <span class="c1">// js, d&#39;oh...</span>
+<span class="nx">TEST_INPUT</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;51243&#39;</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">TEST_INPUT</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;124\n3&#39;</span><span class="p">);</span> <span class="c1">// false, cause \n doesn&#39;t match with &#39;.&#39;</span>
+
+<span class="kr">const</span> <span class="nx">TEST_STARTS_WITH</span> <span class="o">=</span> <span class="sr">/^https?:\/\/[\w\d](?:[\w\d-]+[\w\d])?\.net/</span><span class="p">;</span>
+<span class="nx">TEST_STARTS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;https://a.net&quot;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_STARTS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;http://ab-c.net/test&quot;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_STARTS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;http://-c.com/test&quot;</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">TEST_STARTS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;mongodb://-c.com/test&quot;</span><span class="p">);</span> <span class="c1">//false</span>
+
+<span class="kr">const</span> <span class="nx">TEST_ENDS_WITH</span> <span class="o">=</span> <span class="sr">/[\/\\][\w\d](?:[\w\d-]+[\w\d])\.(bat|sh)$/</span>
+<span class="nx">TEST_ENDS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;/test/good-file-name.sh&quot;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_ENDS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;c:\\windows\\good-file-name.bat&quot;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_ENDS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;/test/.hidden-file.bat&quot;</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">TEST_ENDS_WITH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;/test/no_exe.com&quot;</span><span class="p">);</span> <span class="c1">// false</span>
+</pre></div>
+
+
+<h2>Multiline mode, <em>with</em> \m switch</h2>
+<p>Well, I do believe that 90% of use cases for <code>RegExp.prototype.test</code> are validation.
+For validation purposes, if we really need to make it strict, multiline isn't what we're looking for, really.
+Just cause <code>^</code> and <code>$</code> won't work as we'd exepect. Multiline is something we might need for parsers and full text search.
+There's gonna be part 2 on that soon.</p>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">TEST_MULTILINE</span> <span class="o">=</span> <span class="sr">/^12*.3$/m</span><span class="p">;</span>
+<span class="nx">TEST_MULTILINE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;12 3&quot;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">TEST_MULTILINE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;12\n3&quot;</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="c1">// be careful now, ^$ doesn&#39;t mean the entire sting in multiline mode</span>
+<span class="nx">TEST_MULTILINE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;123\n43&quot;</span><span class="p">);</span> <span class="c1">// true</span>
+</pre></div>
+
+
+<h2>Links</h2>
+<ul>
+<li><a href="https://repl.it/@sunrize531/regexp-part-1-test">repl with examples</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">RegExp reference</a></li>
+<li><a href="https://regex101.com/">RegExp sandbox (good one)</a></li>
+<li><a href="https://rampion.github.io/RegHex/">Puzzle</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+</section>
+
+    <footer id="contentinfo" class="body">
+        <address id="about" class="vcard body">
+            Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+            which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+    </footer>
+</body>

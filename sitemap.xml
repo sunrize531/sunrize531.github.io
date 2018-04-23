@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://bugger.online/</loc>
-<lastmod>2018-04-16T20:33:46-00:00</lastmod>
+<lastmod>2018-04-23T23:59:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugger.online/archives.html</loc>
-<lastmod>2018-04-16T20:33:46-00:00</lastmod>
+<lastmod>2018-04-23T23:59:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugger.online/tags.html</loc>
-<lastmod>2018-04-16T20:33:46-00:00</lastmod>
+<lastmod>2018-04-23T23:59:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugger.online/categories.html</loc>
-<lastmod>2018-04-16T20:33:46-00:00</lastmod>
+<lastmod>2018-04-23T23:59:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -36,6 +36,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2018-04-14T00:00:00+00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>1</priority>
+</url>
+
+<url>
+<loc>http://bugger.online/regexp-guide-part-1.html</loc>
+<lastmod>2018-04-18T20:00:00+00:00</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -82,7 +89,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://bugger.online/category/guides.html</loc>
-<lastmod>2018-03-31T12:00:00+00:00</lastmod>
+<lastmod>2018-04-18T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -102,14 +109,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://bugger.online/tag/promise.html</loc>
-<lastmod>2018-04-16T20:00:00+00:00</lastmod>
+<loc>http://bugger.online/tag/guide.html</loc>
+<lastmod>2018-04-18T20:00:00+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://bugger.online/tag/regexp.html</loc>
+<lastmod>2018-04-18T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugger.online/tag/javascript.html</loc>
+<lastmod>2018-04-18T20:00:00+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://bugger.online/tag/promise.html</loc>
 <lastmod>2018-04-16T20:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -159,13 +180,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://bugger.online/tag/optimisation.html</loc>
-<lastmod>2018-03-31T12:00:00+00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://bugger.online/tag/guide.html</loc>
 <lastmod>2018-03-31T12:00:00+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
