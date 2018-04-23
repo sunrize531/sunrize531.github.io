@@ -67,7 +67,7 @@ And <a href="https://regex101.com/">a sandbox</a>.</p>
 </ol>
 <h2>Single line mode, <em>without</em> \m switch</h2>
 <p>Single line mode means that <code>.</code> character class doesn't match with any end of line characters, and also <code>^</code> and <code>$</code>
-will match the start end the end of input respectivele.</p>
+will match the start and the end of the input respectively.</p>
 <p>Here, how it works:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">TEST_PIECE</span> <span class="o">=</span> <span class="sr">/123/</span><span class="p">;</span>
 <span class="nx">TEST_PIECE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">);</span> <span class="c1">// true</span>
@@ -101,8 +101,9 @@ will match the start end the end of input respectivele.</p>
 
 <h2>Multiline mode, <em>with</em> \m switch</h2>
 <p>Well, I do believe that 90% of use cases for <code>RegExp.prototype.test</code> are validation.
-For validation purposes, if we really need to make it strict, multiline isn't what we're looking for, really.
-Just cause <code>^</code> and <code>$</code> won't work as we'd exepect. Multiline is something we might need for parsers and full text search.
+For validation purposes, if we really need to make it strict, multiline isn't what we're looking for.
+Just cause <code>^</code> and <code>$</code> won't work as we'd exepect.</p>
+<p>Multiline is something we might need for parsers and full text search.
 There's gonna be part 2 on that soon.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">TEST_MULTILINE</span> <span class="o">=</span> <span class="sr">/^12*.3$/m</span><span class="p">;</span>
 <span class="nx">TEST_MULTILINE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;12 3&quot;</span><span class="p">);</span> <span class="c1">// true</span>
