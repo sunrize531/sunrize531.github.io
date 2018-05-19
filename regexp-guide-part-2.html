@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+      <title>BUGGER.ONLINE</title>
+
+
+    <meta name="tags" content="guide" />
+    <meta name="tags" content="regexp" />
+    <meta name="tags" content="javascript" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="http://bugger.online/theme/css/style.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117058772-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-117058772-1');
+    </script>
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+        <h1><a href="http://bugger.online/">BUGGER.ONLINE</a></h1>
+        <h2 id="subtitle">Just things I keep googling at work</h2>
+    </header>
+
+    <nav id="menu">
+        <h2>Categories:</h2>
+        <ul id="categories">
+<li class="active"><a href="http://bugger.online/category/guides.html">Guides</a></li><li><a href="http://bugger.online/category/lost-and-found.html">Lost and found</a></li><li><a href="http://bugger.online/category/patterns.html">Patterns</a></li>  
+        </ul>
+        <h2>Tags:</h2>
+        <section id="tags">
+<a href="http://bugger.online/tag/guide.html">guide</a> <a href="http://bugger.online/tag/regexp.html">regexp</a> <a href="http://bugger.online/tag/javascript.html">javascript</a> <a href="http://bugger.online/tag/promise.html">promise</a> <a href="http://bugger.online/tag/node.html">node</a> <a href="http://bugger.online/tag/pattern.html">pattern</a> <a href="http://bugger.online/tag/webpack.html">webpack</a> <a href="http://bugger.online/tag/cors.html">cors</a> <a href="http://bugger.online/tag/collections.html">collections</a> <a href="http://bugger.online/tag/mongodb.html">mongodb</a> <a href="http://bugger.online/tag/optimisation.html">optimisation</a> <a href="http://bugger.online/tag/http.html">http</a>         </section>
+        <h2>Information:</h2>
+        <section id="pages">
+<li><a href="http://bugger.online/pages/about-this-site-and-myself.html">About this site and myself</a></li>        </section>
+    </nav>
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://bugger.online/regexp-guide-part-2.html" rel="bookmark"
+         title="Permalink to Regular expressions - guide (part 2)">Regular expressions - guide (part 2)</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2018-04-28T20:00:00+00:00">
+      Sat 28 April 2018
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://bugger.online/author/ivan-filimonov.html">Ivan Filimonov</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>This guide assumes that you're familiar with the subject. If not -
+here's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">the reference</a>.
+And <a href="https://regex101.com/">a sandbox</a>.</p>
+<p>Also have a look at <a href="http://bugger.online/regexp-guide-part-1.html">part 1</a></p>
+<p>So, now let's see what we can do with <code>RegExp.prototype.exec</code>.
+Mostly, it's the same as <code>String.prototype.match</code> but there're few differences.
+<code>String.prototype.match</code> would also accept string as an argument, and will make a RegExp
+of it under the hood. Javascript, d'oh. Better declare our pattern at start and run exec on it.
+Also we can actually iterate through matches.</p>
+<p>So, the common cases for using <code>RegExp.prototype.exec</code></p>
+<ol>
+<li>Parsing things, that are <strong>not</strong> HTML / XML. Seriously, don't parse HTML with RegExp, it's silly.</li>
+<li>Finding things in texts.</li>
+<li>Iterating through matching patterns in text.</li>
+<li>Logs parsing (basically, all of 1-3)</li>
+</ol>
+<h2>Finding subpatterns</h2>
+<p>So, the main difference of this method and <code>RegExp.prototype.test</code>
+is that it returns little more the just true / false.</p>
+<p>Also... Please note, that while I'm gonna do url parsing examples, using RegExp for
+that is almost as silly as HTML parsing (instead of using DOM model), especially if you're on node.</p>
+<p>Node has <a href="https://nodejs.org/dist/latest-v8.x/docs/api/url.html">builtin module</a>
+for that.</p>
+<p>So, here, how it works. And don't forget to mark non-capturing groups with <code>?:</code>.</p>
+<div class="highlight"><pre><span></span><span class="c1">// See if we can find a signature in the email</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">signature</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">]</span> <span class="o">=</span> <span class="sr">/(?:Kind regards|Bye|Cheers)\s+(\w+)(?:\s+(\w+))/m</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;Hi, Annie.\nThanks for the quick responnse.\n\nKind regards\nIvan Filimonov&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">);</span> <span class="c1">// Ivan Filimonov</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">// Get protocol and domain name from url</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">url</span><span class="p">,</span> <span class="nx">protocol</span><span class="p">,</span> <span class="nx">domain</span><span class="p">]</span> <span class="o">=</span> <span class="sr">/^(https?):\/\/((?:[\w\d]+\.)+\w+)/</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;http://bugger.online/test&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">protocol</span><span class="p">,</span> <span class="nx">domain</span><span class="p">);</span> <span class="c1">// http bugger.online</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">// Get domain name and path from url</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">url</span><span class="p">,</span> <span class="nx">domain</span><span class="p">,</span> <span class="nx">path</span><span class="p">]</span> <span class="o">=</span> <span class="sr">/^https?:\/\/((?:[\w\d]+\.)+\w+)(?:\/((?:[\w\d]+\/?)+))/</span>
+    <span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;http://bugger.online/tags/test&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">domain</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span> <span class="c1">// bugger.online tags/test</span>
+</pre></div>
+
+
+<h2>Finding all matches</h2>
+<p>Another application for <code>RegExp.prototyp.exec</code> - finding all matches in the string / text
+and iterating through them.</p>
+<div class="highlight"><pre><span></span><span class="c1">// Iterating through matches</span>
+<span class="c1">// Let&#39;s find markdown italic macros</span>
+<span class="c1">// Note! JS sadly doesn&#39;t support lookbehind assertions so,</span>
+<span class="c1">// escaping (`\*`) won&#39;t work like it should.</span>
+<span class="c1">// Also note, that nested expression in second line doesn&#39;t match.</span>
+<span class="kd">let</span> <span class="nx">PATTERN</span> <span class="o">=</span> <span class="sr">/([_*])([^_*]+)\1/g</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">text</span> <span class="o">=</span> <span class="sb">`Quick *brown* fox jumps over the _lazy_ dog</span>
+<span class="sb">*Quick _brown_ fox jumps over* the lazy dog`</span>
+<span class="kd">let</span> <span class="nx">matched</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">((</span><span class="nx">matched</span> <span class="o">=</span> <span class="nx">PATTERN</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">text</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">[</span><span class="nx">full</span><span class="p">,</span> <span class="nx">delimiter</span><span class="p">,</span> <span class="nx">content</span><span class="p">]</span> <span class="o">=</span> <span class="nx">matched</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">full</span><span class="p">,</span> <span class="nx">content</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="[http://www.rexegg.com/regex-disambiguation.html]">Advanced Regex Tutorial</a> - few things aren't widely supported in JS,
+  but still good to learn, esp if you have to work with better regex implementation in other languages (python, ruby, java, perl)</li>
+</ul>
+  </div><!-- /.entry-content -->
+</section>
+
+    <footer id="contentinfo" class="body">
+        <address id="about" class="vcard body">
+            Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+            which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+    </footer>
+</body>
