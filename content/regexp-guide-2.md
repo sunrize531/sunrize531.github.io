@@ -2,7 +2,7 @@ Title: Regular expressions - guide (part 2)
 Slug: regexp-guide-part-2
 Date: 2018-05-19 12:00
 Category: Guides
-Summary: Just few common examples on how to use regexp. Now `RegExp.prototype.exec`. To be continued...
+Summary: Just few common examples on how to use regexp. Now `RegExp.prototype.exec`. To be continued.
 Tags: guide, regexp, javascript
 
 This guide assumes that you're familiar with the subject. If not -
@@ -79,6 +79,10 @@ while ((matched = PATTERN.exec(text))) {
     console.info(full, content);
 }
 ```
+
+## REPL with all the examples
+
+[Here](https://repl.it/@sunrize531/regexp-part-2-exec)
 
 ## Further reading
 
