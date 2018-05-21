@@ -5,9 +5,9 @@ Category: Snippets
 Summary: How to add a prefix to logs without screwing the callstack
 Tags: snippet, logging, console, client
 
-So, we need to filter the massive log in the console. Off course, We could filter by filename, plain text, whatever,
-but sometimes it would be easier just to add a prefix to all log entries in the module / lib / whatever. As long
-as we're banned from using the debugger for some reason ;)
+So, we need to filter the massive log in the console. Of course, We could filter by filename,
+but sometimes it would be easier just to add a prefix to all log entries in the module / lib / class / whatever. 
+Since we're banned from using the debugger for some reason ;)
 
 Most obvious implementation would be a simple wrapper, something like this:
 
