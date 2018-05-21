@@ -57,9 +57,9 @@
     </address>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>So, we need to filter the massive log in the console. Off course, We could filter by filename, plain text, whatever,
-but sometimes it would be easier just to add a prefix to all log entries in the module / lib / whatever. As long
-as we're banned from using the debugger for some reason ;)</p>
+    <p>So, we need to filter the massive log in the console. Of course, We could filter by filename,
+but sometimes it would be easier just to add a prefix to all log entries in the module / lib / class / whatever. 
+Since we're banned from using the debugger for some reason ;)</p>
 <p>Most obvious implementation would be a simple wrapper, something like this:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;[the-lib]&quot;</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">log</span><span class="p">()</span> <span class="p">{</span>
